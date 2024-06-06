@@ -11,7 +11,6 @@ import com.jsp.wm.utility.ResponseStructure;
 
 import jakarta.validation.Valid;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -20,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("api/v1")
 public class WareHouseController {
 
-	//@Autowired
-	//private WareHouseService wareHouseService;
+	@Autowired
+	private WareHouseService wareHouseService;
 	
-	@GetMapping("/warehouses")
-	public String createWareHouse(){//@RequestBody @Valid WareHouseRequest wareHouseRequest){
-		return "WareHouse found";
+	@PostMapping("/warehouses")
+	public String createWareHouse(@RequestBody @Valid WareHouseRequest wareHouseRequest){
+		return "WareHouse created";
 	}
 }

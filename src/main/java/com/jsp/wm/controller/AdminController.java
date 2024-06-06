@@ -21,7 +21,7 @@ public class AdminController{
 	@Autowired
 	private AdminService adminService;
 	
-	@PostMapping("/register")
+	@PostMapping("/super_admins")
 	public ResponseEntity<ResponseStructure<AdminResponse>> createAdmin(@RequestBody @Valid AdminRequest adminRequest){
 		return adminService.createAdmin(adminRequest);
 	}
