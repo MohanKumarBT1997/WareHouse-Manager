@@ -16,5 +16,7 @@ public class WareHouseServiceImpl implements WareHouseService {
 			@Valid WareHouseRequest wareHouseRequest) {
 		return null;
 	}
+	
+	
 
 }

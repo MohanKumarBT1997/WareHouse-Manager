@@ -1,5 +1,7 @@
 package com.jsp.wm.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,4 +24,7 @@ public class WareHouse {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int wareHouseId;
 	private String name;
+	
+	@Autowired
+	private Admin admin;
 }
