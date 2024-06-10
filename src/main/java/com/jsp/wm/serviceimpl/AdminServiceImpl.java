@@ -28,7 +28,7 @@ public class AdminServiceImpl implements AdminService {
 	private AdminMapper adminMapper;
 
 	@Override
-	public ResponseEntity<ResponseStructure<AdminResponse>> createAdmin(@Valid AdminRequest adminRequest){
+	public ResponseEntity<ResponseStructure<AdminResponse>> createSuperAdmin(@Valid AdminRequest adminRequest){
 	
 		if(adminRepository.existsByAdminType(AdminType.SUPER_ADMIN))
 			throw new IllegalOperationException("SUPER_ADMIN already present");
@@ -42,5 +42,10 @@ public class AdminServiceImpl implements AdminService {
 				.setStatus(HttpStatus.CREATED.value())
 				.setMessage("Super Admin created")
 				.setData(adminMapper.mapToAdminResponse(admin)));
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<AdminResponse>> createAdmin(@Valid AdminRequest adminRequest) {
+		return null;
 	}
 }

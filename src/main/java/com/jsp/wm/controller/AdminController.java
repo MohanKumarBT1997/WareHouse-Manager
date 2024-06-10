@@ -22,9 +22,17 @@ public class AdminController{
 	private AdminService adminService;
 	
 	@PostMapping("/register")
+	public ResponseEntity<ResponseStructure<AdminResponse>> createSuperAdmin(@RequestBody @Valid AdminRequest adminRequest){
+		return adminService.createSuperAdmin(adminRequest);
+	}
+	
+	
+	
+	@PostMapping("/admins")
 	public ResponseEntity<ResponseStructure<AdminResponse>> createAdmin(@RequestBody @Valid AdminRequest adminRequest){
 		return adminService.createAdmin(adminRequest);
 	}
+	
 	
 
 }

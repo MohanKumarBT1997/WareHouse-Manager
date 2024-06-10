@@ -22,9 +22,9 @@ public class SecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity.csrf(csrf-> csrf.disable())
 				.authorizeHttpRequests(authorize-> authorize.requestMatchers("api/v1/register")
-				.permitAll().anyRequest().authenticated())
-				.formLogin(Customizer.withDefaults())
-				.build();
-		
+				.permitAll() //making public
+				.anyRequest().authenticated()) //leaving that incoming public url, authenticate the other url
+				.formLogin(Customizer.withDefaults()) //Type of authentication done 
+				.build();	
 	}
 }
