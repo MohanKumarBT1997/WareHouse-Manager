@@ -1,5 +1,7 @@
 package com.jsp.wm.service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 
 import com.jsp.wm.requestdto.AdminRequest;
@@ -20,6 +22,9 @@ public interface AdminService {
 			int adminId);
 
 	ResponseEntity<ResponseStructure<AdminResponse>> findAdminById(int adminId);
+
+	ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllAdmins();
+
 
 
 
