@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.jsp.wm.entity.Admin;
 import com.jsp.wm.enums.AdminType;
 import com.jsp.wm.exception.AdminNotFindByEmailException;
+import com.jsp.wm.exception.AdminNotFindByIdException;
 import com.jsp.wm.exception.IllegalOperationException;
 import com.jsp.wm.exception.WarehouseNotFoundByIdException;
 import com.jsp.wm.mapper.AdminMapper;
@@ -94,6 +95,39 @@ public class AdminServiceImpl implements AdminService {
 							.setData(adminMapper.mapToAdminResponse(admin)));
 		}).orElseThrow(()-> new AdminNotFindByEmailException("Admin not found by email"));
 	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdminBySuperAdmin(@Valid AdminRequest adminRequest,
+			int adminId) {
+		
+		return adminRepository.findById(adminId).map(exAdmin->{
+			
+			adminMapper.mapToAdmin(adminRequest, exAdmin);
+		
+			Admin admin = adminRepository.save(exAdmin);
+
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new ResponseStructure<AdminResponse>()
+							.setStatus(HttpStatus.OK.value())
+							.setMessage("Admin Updated")
+							.setData(adminMapper.mapToAdminResponse(admin)));
+		}).orElseThrow(()-> new AdminNotFindByIdException("Admin not found"));
+		
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<AdminResponse>> findAdminById(int adminId) {
+		
+	return adminRepository.findById(adminId).map(admin->{
+			
+			return ResponseEntity.status(HttpStatus.FOUND)
+					.body(new ResponseStructure<AdminResponse>()
+							.setStatus(HttpStatus.FOUND.value())
+							.setMessage("Admin Found")
+							.setData(adminMapper.mapToAdminResponse(admin)));
+		}).orElseThrow(()-> new AdminNotFindByIdException("Admin not found"));
+	}
+	
 }
 
 
