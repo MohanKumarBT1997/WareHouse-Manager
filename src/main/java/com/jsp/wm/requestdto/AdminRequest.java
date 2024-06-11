@@ -1,7 +1,6 @@
 package com.jsp.wm.requestdto;
 
 
-import com.jsp.wm.enums.AdminType;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -30,6 +29,4 @@ public class AdminRequest {
 			+ "and numeric character and must be least 8 character in length.")
 	private String password;	
 	
-	private AdminType adminType;
-
 }

@@ -10,9 +10,9 @@ import jakarta.validation.Valid;
 
 public interface AdminService {
 
-	ResponseEntity<ResponseStructure<AdminResponse>> createSuperAdmin(@Valid AdminRequest adminRequest);
+	ResponseEntity<ResponseStructure<AdminResponse>> createSuperAdmin( AdminRequest adminRequest);
 
-	ResponseEntity<ResponseStructure<AdminResponse>> createAdmin(@Valid AdminRequest adminRequest, int wareHouseId);
+	ResponseEntity<ResponseStructure<AdminResponse>> createAdmin( AdminRequest adminRequest, int wareHouseId);
 
 
 

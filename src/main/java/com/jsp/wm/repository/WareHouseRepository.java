@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.jsp.wm.entity.WareHouse;
+import com.jsp.wm.entity.Warehouse;
 
-public interface WareHouseRepository extends JpaRepository<WareHouse, Integer>  {
+public interface WarehouseRepository extends JpaRepository<Warehouse, Integer>  {
 
-	public Optional<WareHouse> findById(int wareHouseId);
+	public Optional<Warehouse> findById(int warehouseId);
 
 }
