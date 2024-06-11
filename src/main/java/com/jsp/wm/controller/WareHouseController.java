@@ -13,7 +13,9 @@ import com.jsp.wm.utility.ResponseStructure;
 
 import jakarta.validation.Valid;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -28,5 +30,13 @@ public class WareHouseController {
 	@PostMapping("/warehouses")
 	public ResponseEntity<ResponseStructure<WareHouseResponse>> createWarehouse(@RequestBody @Valid WareHouseRequest warehouseRequest){
 		return warehouseService.createWarehouse(warehouseRequest);
+	}
+	
+	
+	@PreAuthorize("hasAuthority('UPDATE_WAREHOUSE')")
+	@PutMapping("/warehouses/{warehouseId}")
+	public ResponseEntity<ResponseStructure<WareHouseResponse>> updateWarehouse(@RequestBody @Valid WareHouseRequest warehouseRequest,
+			@PathVariable int warehouseId){
+		return warehouseService.updateWarehouse(warehouseRequest,warehouseId);
 	}
 }
