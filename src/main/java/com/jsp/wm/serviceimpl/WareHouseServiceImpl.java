@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.jsp.wm.entity.Admin;
 import com.jsp.wm.entity.WareHouse;
 import com.jsp.wm.exception.AdminNotFindByEmailException;
+import com.jsp.wm.exception.AdminNotFindByIdException;
 import com.jsp.wm.exception.WarehouseNotFoundByIdException;
 import com.jsp.wm.mapper.WarehouseMapper;
 import com.jsp.wm.repository.WareHouseRepository;
@@ -61,6 +62,20 @@ public class WareHouseServiceImpl implements WareHouseService {
 							.setMessage("Warehouse Updated")
 							.setData(warehouseMapper.mapToWarehouseResponse(warehouse)));
 		}).orElseThrow(()-> new WarehouseNotFoundByIdException("Warehouse Not Found"));
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<WareHouseResponse>> findWarehouseById(int warehouseId) {
+			
+		return warehouseRepository.findById(warehouseId).
+				<ResponseEntity<ResponseStructure<WareHouseResponse>>>map(warehouse->{
+			
+			return ResponseEntity.status(HttpStatus.FOUND)
+					.body(new ResponseStructure<WareHouseResponse>()
+							.setStatus(HttpStatus.FOUND.value())
+							.setMessage("Warehouse Found")
+							.setData(warehouseMapper.mapToWarehouseResponse(warehouse)));
+		}).orElseThrow(()-> new WarehouseNotFoundByIdException("Warehouse not found by Id"));
 	}
 
 
