@@ -81,8 +81,6 @@ public class AdminServiceImpl implements AdminService {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String email = authentication.getName();
 
-
-
 		return adminRepository.findByEmail(email).map(exAdmin->{
 			
 			adminMapper.mapToAdmin(adminRequest, exAdmin);
