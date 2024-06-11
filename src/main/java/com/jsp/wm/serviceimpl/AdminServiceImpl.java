@@ -2,6 +2,8 @@
 package com.jsp.wm.serviceimpl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -126,6 +128,18 @@ public class AdminServiceImpl implements AdminService {
 							.setMessage("Admin Found")
 							.setData(adminMapper.mapToAdminResponse(admin)));
 		}).orElseThrow(()-> new AdminNotFindByIdException("Admin not found"));
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllAdmins() {
+		List<AdminResponse> adminsList = adminRepository.findAll().stream().map(admin -> 
+			adminMapper.mapToAdminResponse(admin)).toList();
+		
+		return ResponseEntity.status(HttpStatus.FOUND)
+				.body(new ResponseStructure<List<AdminResponse>>()
+						.setStatus(HttpStatus.FOUND.value())
+						.setMessage("Admins Found")
+						.setData(adminsList));
 	}
 	
 }

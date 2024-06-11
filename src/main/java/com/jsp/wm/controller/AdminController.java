@@ -1,5 +1,7 @@
 package com.jsp.wm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -54,6 +56,12 @@ public class AdminController{
 	@GetMapping("/admins/{adminId}")
 	public ResponseEntity<ResponseStructure<AdminResponse>> findAdminById(@PathVariable int adminId){
 		return adminService.findAdminById(adminId);
+	}
+	
+	@PreAuthorize("hasAuthority('READ')")
+	@GetMapping("/admins")
+	public ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllAdmins(){
+		return adminService.findAllAdmins();
 	}
 	
 }
