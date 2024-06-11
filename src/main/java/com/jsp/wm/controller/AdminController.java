@@ -2,6 +2,7 @@ package com.jsp.wm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jsp.wm.requestdto.AdminRequest;
-import com.jsp.wm.requestdto.WareHouseRequest;
 import com.jsp.wm.responsedto.AdminResponse;
 import com.jsp.wm.service.AdminService;
 import com.jsp.wm.utility.ResponseStructure;
@@ -17,7 +17,7 @@ import com.jsp.wm.utility.ResponseStructure;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("/api/v1")
 public class AdminController{
 	
 	@Autowired
@@ -29,11 +29,11 @@ public class AdminController{
 	}
 	
 	
-	
-	@PostMapping("/wareHouses/{wareHouseId}/admins")
+	@PreAuthorize("hasAuthority('CREATE_ADMIN')")
+	@PostMapping("/warehouses/{warehouseId}/admins")
 	public ResponseEntity<ResponseStructure<AdminResponse>> createAdmin
-	(@RequestBody @Valid AdminRequest adminRequest,@PathVariable int wareHouseId){
-		return adminService.createAdmin(adminRequest,wareHouseId);
+	(@RequestBody @Valid AdminRequest adminRequest, @PathVariable int warehouseId){
+		return adminService.createAdmin(adminRequest,warehouseId);
 	}
 	
 	

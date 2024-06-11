@@ -10,6 +10,6 @@ import jakarta.validation.Valid;
 
 public interface WareHouseService {
 
-	ResponseEntity<ResponseStructure<WareHouseResponse>> createWareHouse(@Valid WareHouseRequest wareHouseRequest);
+	ResponseEntity<ResponseStructure<WareHouseResponse>> createWarehouse(@Valid WareHouseRequest warehouseRequest);
 
 }

@@ -14,8 +14,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class WareHouseRequest {
 	
-	@NotNull(message = "WareHouse name cannot be null")
-	@NotBlank(message = "WareHouse name cannot be blank")
+	@NotNull(message = "Warehouse name cannot be null")
+	@NotBlank(message = "Warehouse name cannot be blank")
 	private String name;
 	
 }

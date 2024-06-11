@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WarahouseManagerApplication {
+public class WarehouseManagerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WarahouseManagerApplication.class, args);
+		SpringApplication.run(WarehouseManagerApplication.class, args);
 	}
 }

@@ -1,22 +1,41 @@
 package com.jsp.wm.serviceimpl;
 
-import org.springframework.http.ResponseEntity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.jsp.wm.entity.WareHouse;
+import com.jsp.wm.mapper.WarehouseMapper;
+import com.jsp.wm.repository.WareHouseRepository;
 import com.jsp.wm.requestdto.WareHouseRequest;
 import com.jsp.wm.responsedto.WareHouseResponse;
 import com.jsp.wm.service.WareHouseService;
 import com.jsp.wm.utility.ResponseStructure;
 
-import jakarta.validation.Valid;
 
+
+
+@Service
 public class WareHouseServiceImpl implements WareHouseService {
 
+	@Autowired
+	private WareHouseRepository warehouseRepository;
+	
+	@Autowired
+	private WarehouseMapper warehouseMapper;
+	
 	@Override
-	public ResponseEntity<ResponseStructure<WareHouseResponse>> createWareHouse(
-			@Valid WareHouseRequest wareHouseRequest) {
-		return null;
+	public ResponseEntity<ResponseStructure<WareHouseResponse>> createWarehouse( WareHouseRequest warehouseRequest) {
+
+			WareHouse warehouse = warehouseMapper.mapToWarehouse(warehouseRequest, new WareHouse());
+			warehouseRepository.save(warehouse);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseStructure<WareHouseResponse>()
+					.setStatus(HttpStatus.CREATED.value())
+					.setMessage("Warehouse created")
+					.setData(warehouseMapper.mapToWarehouseResponse(warehouse)));
 	}
-	
-	
 
 }

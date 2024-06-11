@@ -8,6 +8,6 @@ import com.jsp.wm.entity.WareHouse;
 
 public interface WareHouseRepository extends JpaRepository<WareHouse, Integer>  {
 
-	public Optional<WareHouse> findById(int wareHouseId);
+	public Optional<WareHouse> findById(int warehouseId);
 
 }
