@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jsp.wm.requestdto.WareHouseRequest;
+import com.jsp.wm.responsedto.AdminResponse;
 import com.jsp.wm.responsedto.WareHouseResponse;
 import com.jsp.wm.service.WareHouseService;
 import com.jsp.wm.utility.ResponseStructure;
 
 import jakarta.validation.Valid;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,5 +40,11 @@ public class WareHouseController {
 	public ResponseEntity<ResponseStructure<WareHouseResponse>> updateWarehouse(@RequestBody @Valid WareHouseRequest warehouseRequest,
 			@PathVariable int warehouseId){
 		return warehouseService.updateWarehouse(warehouseRequest,warehouseId);
+	}
+	
+	@PreAuthorize("hasAuthority('READ')")
+	@GetMapping("/warehouses/{warehouseId}")
+	public ResponseEntity<ResponseStructure<WareHouseResponse>> findWarehouseById(@PathVariable int warehouseId){
+		return warehouseService.findWarehouseById(warehouseId);
 	}
 }
