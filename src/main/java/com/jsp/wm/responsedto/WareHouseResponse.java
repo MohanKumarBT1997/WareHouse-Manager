@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WarehouseResponse {
+public class WareHouseResponse {
 
 	private int warehouseId;
 	private String name;

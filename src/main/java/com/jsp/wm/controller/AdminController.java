@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jsp.wm.requestdto.AdminRequest;
-import com.jsp.wm.requestdto.WarehouseRequest;
 import com.jsp.wm.responsedto.AdminResponse;
 import com.jsp.wm.service.AdminService;
 import com.jsp.wm.utility.ResponseStructure;

@@ -13,7 +13,7 @@ import com.jsp.wm.exception.IllegalOperationException;
 import com.jsp.wm.exception.WarehouseNotFoundByIdException;
 import com.jsp.wm.mapper.AdminMapper;
 import com.jsp.wm.repository.AdminRepository;
-import com.jsp.wm.repository.WarehouseRepository;
+import com.jsp.wm.repository.WareHouseRepository;
 import com.jsp.wm.requestdto.AdminRequest;
 import com.jsp.wm.responsedto.AdminResponse;
 import com.jsp.wm.service.AdminService;
@@ -27,7 +27,7 @@ public class AdminServiceImpl implements AdminService {
 	private AdminRepository adminRepository;
 
 	@Autowired
-	private WarehouseRepository warehouseRepository;
+	private WareHouseRepository warehouseRepository;
 
 	@Autowired
 	private AdminMapper adminMapper;

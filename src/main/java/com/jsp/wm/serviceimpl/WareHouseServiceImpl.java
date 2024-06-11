@@ -6,32 +6,36 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.jsp.wm.entity.Warehouse;
+import com.jsp.wm.entity.WareHouse;
 import com.jsp.wm.mapper.WarehouseMapper;
-import com.jsp.wm.repository.WarehouseRepository;
-import com.jsp.wm.requestdto.WarehouseRequest;
-import com.jsp.wm.responsedto.WarehouseResponse;
-import com.jsp.wm.service.WarehouseService;
+import com.jsp.wm.repository.WareHouseRepository;
+import com.jsp.wm.requestdto.WareHouseRequest;
+import com.jsp.wm.responsedto.WareHouseResponse;
+import com.jsp.wm.service.WareHouseService;
 import com.jsp.wm.utility.ResponseStructure;
 
+
+
+
 @Service
-public class WarehouseServiceImpl implements WarehouseService {
+public class WareHouseServiceImpl implements WareHouseService {
 
 	@Autowired
-	private WarehouseRepository warehouseRepository;
+	private WareHouseRepository warehouseRepository;
 	
 	@Autowired
 	private WarehouseMapper warehouseMapper;
 	
 	@Override
-	public ResponseEntity<ResponseStructure<WarehouseResponse>> createWarehouse( WarehouseRequest warehouseRequest) {
+	public ResponseEntity<ResponseStructure<WareHouseResponse>> createWarehouse( WareHouseRequest warehouseRequest) {
 
-			Warehouse warehouse = warehouseMapper.mapToWarehouse(warehouseRequest, new Warehouse());
+			WareHouse warehouse = warehouseMapper.mapToWarehouse(warehouseRequest, new WareHouse());
 			warehouseRepository.save(warehouse);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseStructure<WarehouseResponse>()
+			return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseStructure<WareHouseResponse>()
 					.setStatus(HttpStatus.CREATED.value())
 					.setMessage("Warehouse created")
 					.setData(warehouseMapper.mapToWarehouseResponse(warehouse)));
 	}
+
 }

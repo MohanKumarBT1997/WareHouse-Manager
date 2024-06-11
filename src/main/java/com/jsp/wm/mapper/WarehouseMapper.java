@@ -2,20 +2,20 @@ package com.jsp.wm.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.jsp.wm.entity.Warehouse;
-import com.jsp.wm.requestdto.WarehouseRequest;
-import com.jsp.wm.responsedto.WarehouseResponse;
+import com.jsp.wm.entity.WareHouse;
+import com.jsp.wm.requestdto.WareHouseRequest;
+import com.jsp.wm.responsedto.WareHouseResponse;
 
 @Component
 public class WarehouseMapper {
 
-	public Warehouse mapToWarehouse(WarehouseRequest warehouseRequest,Warehouse warehouse) {
+	public WareHouse mapToWarehouse(WareHouseRequest warehouseRequest,WareHouse warehouse) {
 		warehouse.setName(warehouseRequest.getName());
 		return warehouse;
 	}
 	
-	public WarehouseResponse mapToWarehouseResponse(Warehouse warehouse) {
-		return WarehouseResponse.builder()
+	public WareHouseResponse mapToWarehouseResponse(WareHouse warehouse) {
+		return WareHouseResponse.builder()
 				.name(warehouse.getName())
 				.warehouseId(warehouse.getWarehouseId())
 				.totalCapacity(0).build();
