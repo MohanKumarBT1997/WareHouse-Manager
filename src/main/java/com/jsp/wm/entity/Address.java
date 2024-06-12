@@ -13,19 +13,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class WareHouse {
+public class Address {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int warehouseId;
-	private String name;
+	private int addressId;
+	private String addressLine;
+	private String city;
+	private String state;
+	private String country;
+	private int pincode;
+	private String longitude;
+	private String latitude;
+	
 	
 	@OneToOne
-	private Admin admin;
-
+	private WareHouse warehouse;
+	
 }
