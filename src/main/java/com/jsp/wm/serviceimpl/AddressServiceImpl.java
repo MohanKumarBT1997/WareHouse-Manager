@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.jsp.wm.entity.Address;
+import com.jsp.wm.exception.AddressNotFoundByIdException;
 import com.jsp.wm.exception.WarehouseNotFoundByIdException;
 import com.jsp.wm.mapper.AddressMapper;
 import com.jsp.wm.repository.AddressRepository;
@@ -48,6 +49,23 @@ public class AddressServiceImpl implements AddressService{
 					
 		}).orElseThrow(() -> new  WarehouseNotFoundByIdException("Invalid WareHouse Id"));
 		
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<AddressResponse>> updateAddress(@Valid AddressRequest addressRequest,
+			int addressId) {
+		
+		return addressRepository.findById(addressId).map(exAddress -> {
+			addressMapper.mapToAddress(addressRequest, exAddress);
+			Address address = addressRepository.save(exAddress);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseStructure<AddressResponse>()
+					.setStatus(HttpStatus.OK.value())
+					.setMessage("Address updated").
+					setData(addressMapper.mapToAddressResponse(address))
+					);
+			
+		}).orElseThrow(() -> new AddressNotFoundByIdException("Address not found by Id"));
 	}
 
 }
