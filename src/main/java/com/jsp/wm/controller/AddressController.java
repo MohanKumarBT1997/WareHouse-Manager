@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,5 +30,12 @@ public class AddressController {
 			@PathVariable int warehouseId){
 		
 		return addressService.addAddress(addressRequest,warehouseId);
+	}
+	
+	@PreAuthorize("hasAuthority('UPDATE_ADMIN')")
+	@PutMapping("/addresses/{addressId}")
+	public ResponseEntity<ResponseStructure<AddressResponse>> updateAddress(@RequestBody @Valid AddressRequest addressRequest,
+			@PathVariable int addressId){
+		return addressService.updateAddress(addressRequest,addressId);
 	}
 }
