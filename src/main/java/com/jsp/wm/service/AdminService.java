@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.jsp.wm.enums.AdminType;
 import com.jsp.wm.requestdto.AdminRequest;
 import com.jsp.wm.responsedto.AdminResponse;
 import com.jsp.wm.utility.ResponseStructure;
@@ -23,9 +24,7 @@ public interface AdminService {
 
 	ResponseEntity<ResponseStructure<AdminResponse>> findAdminById(int adminId);
 
-	ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllAdmins();
 
-
-
+	ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllByAdminType(AdminType adminType);
 
 }

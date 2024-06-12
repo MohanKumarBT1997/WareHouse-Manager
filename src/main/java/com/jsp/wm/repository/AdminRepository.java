@@ -1,5 +1,6 @@
 package com.jsp.wm.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.jsp.wm.entity.Admin;
 import com.jsp.wm.entity.WareHouse;
 import com.jsp.wm.enums.AdminType;
+import com.jsp.wm.responsedto.AdminResponse;
 
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
@@ -17,5 +19,7 @@ public interface AdminRepository extends JpaRepository<Admin, Integer> {
 	public Optional<Admin> findById(int adminId);
 
 	public Optional<Admin> findByAdminType(AdminType adminType);
+
+	public List<Admin> findAllByAdminType(AdminType adminType);
 
 }
