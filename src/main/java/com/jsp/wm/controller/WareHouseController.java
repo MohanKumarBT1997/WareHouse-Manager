@@ -1,11 +1,14 @@
 package com.jsp.wm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jsp.wm.enums.AdminType;
 import com.jsp.wm.requestdto.WareHouseRequest;
 import com.jsp.wm.responsedto.AdminResponse;
 import com.jsp.wm.responsedto.WareHouseResponse;
@@ -46,5 +49,11 @@ public class WareHouseController {
 	@GetMapping("/warehouses/{warehouseId}")
 	public ResponseEntity<ResponseStructure<WareHouseResponse>> findWarehouseById(@PathVariable int warehouseId){
 		return warehouseService.findWarehouseById(warehouseId);
+	}
+	
+	@PreAuthorize("hasAuthority('READ')")
+	@GetMapping("/warehouses")
+	public ResponseEntity<ResponseStructure<List<WareHouseResponse>>> findWarehouses(){
+		return warehouseService.findWarehouses();
 	}
 }
