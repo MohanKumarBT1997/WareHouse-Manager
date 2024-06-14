@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.jsp.wm.enums.MaterialTypes;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,8 @@ public class StorageRequest {
 	private double lengthInMeters;
 	private double breadthInMeters;
 	private double heightInMeters;
+	
+	@Enumerated(EnumType.STRING)
 	private List<MaterialTypes> materialTypes;
 
 }

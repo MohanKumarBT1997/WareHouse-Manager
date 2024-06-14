@@ -56,4 +56,10 @@ public class WareHouseController {
 	public ResponseEntity<ResponseStructure<List<WareHouseResponse>>> findWarehouses(){
 		return warehouseService.findWarehouses();
 	}
+	
+	@PreAuthorize("hasAuthority('READ')")
+	@GetMapping("/cities/{city}/warehouses")
+	public ResponseEntity<ResponseStructure<List<WareHouseResponse>>> findWarehousesByCity(@PathVariable String city){
+		return warehouseService.findWarehousesByCity(city);
+	}
 }
