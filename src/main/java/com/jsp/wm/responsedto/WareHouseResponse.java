@@ -16,5 +16,5 @@ public class WareHouseResponse {
 
 	private int warehouseId;
 	private String name;
-	private int totalCapacity;
+	private int totalCapacityInKg;
 }
